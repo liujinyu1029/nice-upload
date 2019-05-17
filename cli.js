@@ -1,19 +1,9 @@
 #!/usr/bin/env node
 var program = require('commander');
-const request = require('request-promise-native')
-
-const initAction = require('./src/action/init')
-// const fileAction = require('./../src/action/file')
-// const batchAction = require('./../src/action/batch')
-
 const pK = require('./package.json')
-
-// process.env.NODE_ENV = 'production'
-
-program
-  .command('push <file>')
-  .description('push file to static server')
-  .action(onPush);
+const onInit = require('./command/init')
+const onPush = require('./command/push')
+const onConf = require('./command/conf')
 
 program
   .version(pK.version)
@@ -21,32 +11,24 @@ program
 
 program
   .command('init')
-  .description('初始化配置文件')
-  .action(initAction);
+  .description('初始化上传配置文件.uploadrc')
+  .action(onInit);
 
-// console.log(process.argv)
+program
+  .command('conf')
+  .description('[默认命令]按照配置文件.uploadrc上传')
+  .action(onConf);
 
+program
+  .command('push <file/folder>')
+  .description('上传单个文件or文件夹')
+  .action(onPush);
+
+  
 if (process.argv.length === 2) {
-  program.command('push')
   // program.outputHelp();
+  onConf()
 }
 
 program
   .parse(process.argv);
-
-function onPush(file) {
-  console.log(222, file)
-  request({
-    method: 'POST',
-    uri: uploadUrl,
-    formData,
-    headers: {
-      'Oss-auth': ossAuth,
-      'Connection': 'alive',
-      'App-Code': appCode
-      // 'Accept-Encoding': 'gzip, deflate'
-      // 'Content-Type': 'multipart/form-data'
-    },
-    json: true
-  })
-}
