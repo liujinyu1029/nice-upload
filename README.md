@@ -20,13 +20,14 @@ $ nice-upload -h
 静态资源上传工具
 
 Options:
-  -V, --version       output the version number
-  -h, --help          output usage information
+  -V,  --version        output the version number
+  -h,  --help           output usage information
 
 Commands:
-  init [uploadUrl]    初始化上传配置文件.uploadrc
-  conf                [默认命令]按照配置文件.uploadrc上传
-  push <file/folder>  上传单个文件 or 文件夹
+  init   [uploadUrl]    初始化上传配置文件.uploadrc.js
+  url    [uploadUrl]    修改上传路径
+  push   <file/folder>  上传单个文件 or 文件夹
+  conf                  [默认命令]按照配置文件.uploadrc.js上传
 
 ```
 
