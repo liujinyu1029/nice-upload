@@ -13,7 +13,7 @@ nice-upload -- 静态资源上传工具
 $ npm i -g nice-upload
 ```
 
-## Example
+## help
 ```
 $ nice-upload -h
 
@@ -29,6 +29,8 @@ Commands:
   push <file/folder>  上传单个文件 or 文件夹
 
 ```
+
+## Example
 
 1、使用push命令直接上传(单个文件 或 整个文件夹)
 
