@@ -4,6 +4,7 @@ const pK = require('../package.json')
 const onInit = require('../command/init')
 const onPush = require('../command/push')
 const onConf = require('../command/conf')
+const onUrl = require('../command/url')
 
 program
     .version(pK.version)
@@ -11,19 +12,23 @@ program
 
 program
     .command('init [uploadUrl]')
-    .description('初始化上传配置文件.uploadrc')
+    .description('初始化上传配置文件.uploadrc.js')
     .action(onInit);
 
 program
-    .command('conf')
-    .description('[默认命令]按照配置文件.uploadrc上传')
-    .action(onConf);
+    .command('url [uploadUrl]')
+    .description('修改上传路径')
+    .action(onUrl);
 
 program
     .command('push <file/folder>')
     .description('上传单个文件 or 文件夹')
     .action(onPush);
 
+program
+    .command('conf')
+    .description('[默认命令]按照配置文件.uploadrc.js上传')
+    .action(onConf);
 
 if (process.argv.length === 2) {
     onConf()

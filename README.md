@@ -32,7 +32,7 @@ Commands:
 
 ```
 $ nice-upload init http://nice.server.com/upload
-    [success] 成功初始化配置文件.uploadrc.js
+    [init] 成功初始化配置文件.uploadrc.js
 
 $ nice-upload push dist/static/img/404.a57b6f3.png
     [success] http://nice.server.com/resources/dist/static/img/404.a57b6f3.png
@@ -48,7 +48,7 @@ $ nice-upload push dist
 2、通过配置文件上传
 ```
 $ nice-upload init 
-    [success] 成功初始化配置文件.uploadrc.js
+    [init] 成功初始化配置文件.uploadrc.js
 
 $ vim .uploadrc.js 
 
@@ -66,6 +66,11 @@ $ nice-upload   // [等效于 `nice-upload conf` 命令]
     [success] http://nice.server.com/resources/nice/css/app.0f9fe41a0c4ad7cb0260.css
     ...
 
+$ nice-upload url 
+    [show] 当前上传地址为: http://nice.server.com/upload
+
+$ nice-upload url http://nice.server.com/newUpload  // 修改上传路径
+    [change] 上传地址修改为: http://nice.server.com/newUpload
 ```
 
 3、通过配置文件实现多种上传方式

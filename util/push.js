@@ -1,7 +1,6 @@
 const upload = require('./upload')
 const fs = require('fs')
 const glob = require("glob")
-const path = require("path")
 
 let pb = {
   targPathOrg: '',// 上传目标源
@@ -49,7 +48,7 @@ let pb = {
         return Promise.reject(res.error)
       }
     }).catch(err => {
-      console.log('\x1b[91m', '[error]', err)
+      console.log('\x1b[91m%s\x1B[91m', '[error]', err)
     })
   }
 }

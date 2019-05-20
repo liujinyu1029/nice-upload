@@ -52,7 +52,7 @@ const upload = (filePath,opt={
         // 失败
         reject({
           ret: 0, 
-          error :'上传失败'
+          error :'上传失败,请检查上传路径是否有效'
         })
       }
     })
