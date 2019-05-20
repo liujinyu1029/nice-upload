@@ -3,7 +3,9 @@ nice-upload -- 静态资源上传工具
 
 `nice-upload` 上传spa打包后的dist文件到静态服务器.推荐全局安装.然后可以使用`nice-upload`命令
 
-配套后台服务端程序  `nice-static-server`
+配套后台服务端程序 [nice-static-server](https://github.com/liujinyu1029/nice-static-server)
+
+
 
 ## Install
 
@@ -45,6 +47,7 @@ $ nice-upload push dist
 
 ```
 
+
 2、通过配置文件上传
 ```
 $ nice-upload init 
@@ -72,6 +75,7 @@ $ nice-upload url
 $ nice-upload url http://nice.server.com/newUpload  // 修改上传路径
     [change] 上传地址修改为: http://nice.server.com/newUpload
 ```
+
 
 3、通过配置文件实现多种上传方式
 
