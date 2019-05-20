@@ -21,7 +21,7 @@ program
 
 program
     .command('push <file/folder>')
-    .description('上传单个文件or文件夹')
+    .description('上传单个文件 or 文件夹')
     .action(onPush);
 
 

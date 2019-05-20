@@ -1,7 +1,7 @@
 {
   "name": "nice-upload",
-  "version": "0.1.3",
-  "description": "静态资源上传工具--spa伴侣--上传spa打包后的dist文件",
+  "version": "0.1.4",
+  "description": "静态资源上传工具--主要用于上传spa打包后的dist文件到静态服务器",
   "main": "index.js",
   "keywords": [
     "upload"

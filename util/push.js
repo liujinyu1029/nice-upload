@@ -11,7 +11,6 @@ let pb = {
     glob.sync(direcFile + '/*').forEach(childFile => {
       // 判断是不是文件夹
       if (fs.lstatSync(childFile).isDirectory()) {
-        // direcFile.replace('sg', '')
         this.handDirecUpload(childFile)
       } else {
         this.uploadFile(childFile)

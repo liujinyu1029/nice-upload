@@ -8,4 +8,5 @@ module.exports = function (uploadUrl) {
     rfs = rfs.replace("uploadUrl: ''", `uploadUrl: '${uploadUrl}'`)
   }
   fs.writeFileSync(path.resolve(process.cwd(), '.uploadrc.js') ,rfs)
+  console.log('\x1B[32m%s\x1B[32m', '[success]', '成功初始化配置文件.uploadrc.js')
 }
