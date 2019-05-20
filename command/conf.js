@@ -6,7 +6,7 @@ const push = require("../util/push")
 module.exports = function () {
   let confPath = path.resolve(process.cwd(), '.uploadrc.js')
   if (!fs.existsSync(confPath)) {
-    return console.log('\x1b[91m', '[error]缺少配置文件.uploadrc.js 请先执行命令 nice-upload init 初始化配置文件')
+    return console.log('\x1b[91m', '[error]缺少配置文件.uploadrc.js 请先执行命令 nice-upload init [uploadUrl] 初始化配置文件')
   }
   const conf = require(confPath)
   if (!conf.uploadUrl){

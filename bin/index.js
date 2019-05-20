@@ -10,7 +10,7 @@ program
     .description('静态资源上传工具')
 
 program
-    .command('init')
+    .command('init [uploadUrl]')
     .description('初始化上传配置文件.uploadrc')
     .action(onInit);
 

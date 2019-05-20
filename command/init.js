@@ -1,8 +1,11 @@
 const fs = require('fs')
 const path = require('path')
 
-module.exports = function () {
-    const orgPath = path.resolve(__dirname, '../config/.uploadrc.js')
-    const targPath = path.resolve(process.cwd(), '.uploadrc.js')
-    fs.createReadStream(orgPath).pipe(fs.createWriteStream(targPath))
+module.exports = function (uploadUrl) {
+  const orgPath = path.resolve(__dirname, '../config/.uploadrc.js')
+  let rfs = fs.readFileSync(orgPath,'utf8')
+  if (uploadUrl) {
+    rfs = rfs.replace("uploadUrl: ''", `uploadUrl: '${uploadUrl}'`)
+  }
+  fs.writeFileSync(path.resolve(process.cwd(), '.uploadrc.js') ,rfs)
 }
