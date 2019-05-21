@@ -61,8 +61,8 @@ $ vim .uploadrc.js
     module.exports = {
       uploadUrl: 'http://nice.server.com/upload',
       uploadList: [{
-        files: 'dist/static/', // 上传整个文件夹
-        prefix: 'nice'  // 修改存储路径
+        files: 'dist/static/', # 上传整个文件夹
+        prefix: 'nice'  # 修改存储路径
       }]
     }
 
