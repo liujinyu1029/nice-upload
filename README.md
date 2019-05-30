@@ -24,21 +24,36 @@ Options:
   -h,  --help           output usage information
 
 Commands:
-  init   [uploadUrl]    初始化上传配置文件.uploadrc.js
-  url    [uploadUrl]    修改上传路径
-  push   <file/folder>  上传单个文件 or 文件夹
-  conf                  [默认命令]按照配置文件.uploadrc.js上传
+  [default]             查看nice-upload基础信息
+  url    [uploadUrl]    查看/修改 上传路径
+  push   [file/folder]  上传 单个文件/文件夹
+  init                  初始化上传配置文件.uploadrc.js
+  conf                  按照配置文件.uploadrc.js规则 进行上传操作
 
+```
+
+## Usage
+
+```js
+$ nice-upload  // 默认命令 查看nice-upload基础信息
+    nice-upload @0.2.1
+    静态资源上传工具--配套的服务端代码 [nice-static-server](https://github.com/liujinyu1029/nice-static-server.git)
+    -----------------------------------------------------
+    [warning] 尚未配置上传路径, 请执行 `nice-upload url [uploadUrl]` 进行添加
+
+$ nice-upload url http://118.24.107.17:9001/upload  // 修改全局配置 上传地址
+    [change] 上传地址修改为: http://118.24.107.17:9001/upload
+
+$ nice-upload url // 查看 全局配置 上传地址
+    [已配][上传路径] http://118.24.107.173:9001/upload
 ```
 
 ## Example
 
-1、使用push命令直接上传(单个文件 或 整个文件夹)
+1、使用push命令直接上传(单个文件 或 整个文件夹) **PS:push命令，走的是全局配置的上传地址**
 
-```
-$ nice-upload init http://nice.server.com/upload
-    [init] 成功初始化配置文件.uploadrc.js
 
+```js
 $ nice-upload push dist/static/img/404.a57b6f3.png
     [success] http://nice.server.com/resources/dist/static/img/404.a57b6f3.png
 
@@ -50,9 +65,9 @@ $ nice-upload push dist
 
 ```
 
+2、使用conf命令通过配置文件上传 **conf命令只依赖于init出的.uploadrc.js配置文件，会忽略全局配置的上传路径** 
 
-2、通过配置文件上传
-```
+```js
 $ nice-upload init 
     [init] 成功初始化配置文件.uploadrc.js
 
@@ -66,23 +81,16 @@ $ vim .uploadrc.js
       }]
     }
 
-$ nice-upload   // [等效于 `nice-upload conf` 命令]
+$ nice-upload conf  // [等效于 `nice-upload conf` 命令]
     [success] http://nice.server.com/resources/nice/fonts/element-icons.6f0a763.ttf
     [success] http://nice.server.com/resources/nice/js/0.1745a4856fe5f21285eb.js
     [success] http://nice.server.com/resources/nice/css/app.0f9fe41a0c4ad7cb0260.css
     ...
-
-$ nice-upload url 
-    [show] 当前上传地址为: http://nice.server.com/upload
-
-$ nice-upload url http://nice.server.com/newUpload  // 修改上传路径
-    [change] 上传地址修改为: http://nice.server.com/newUpload
 ```
-
 
 3、通过配置文件实现多种上传方式
 
-```
+```js
 module.exports = {
   // 上传地址 [必须参数] 
   uploadUrl: 'http://localhost:9001/uploadResources',  

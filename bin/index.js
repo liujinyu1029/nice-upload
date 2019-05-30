@@ -11,27 +11,35 @@ program
     .description('静态资源上传工具')
 
 program
-    .command('init [uploadUrl]')
+    .command('[default]')
+    .description('查看nice-upload基础信息')
+    .action(onUrl);
+
+program
+    .command('url [uploadUrl]')
+    .description('查看/修改 上传路径')
+    .action(onUrl);
+
+program
+    .command('push [file/folder]')
+    .description('上传 单个文件/文件夹')
+    .action(onPush);
+
+program
+    .command('init')
     .description('初始化上传配置文件.uploadrc.js')
     .action(onInit);
 
 program
-    .command('url [uploadUrl]')
-    .description('修改上传路径')
-    .action(onUrl);
-
-program
-    .command('push <file/folder>')
-    .description('上传单个文件 or 文件夹')
-    .action(onPush);
-
-program
     .command('conf')
-    .description('[默认命令]按照配置文件.uploadrc.js上传')
+    .description('按照配置文件.uploadrc.js规则 进行上传操作')
     .action(onConf);
 
 if (process.argv.length === 2) {
-    onConf()
+    console.log(`${pK.name} @${pK.version}`)
+    console.log(`${pK.description}`)
+    console.log('-----------------------------------------------------')
+    onUrl()
 }
 
 program

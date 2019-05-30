@@ -1,28 +1,38 @@
 const request = require('request')
 const fs = require('fs')
 const path = require('path')
-
+const store = require('../story')
 /** 
  * @param filePath 
  * let filePath = path.join(__dirname,'../js/a.js') 
+ * 
  */
 const upload = (filePath,opt={
   'file-path-head':undefined,
 }) => {
   return new Promise((resolve, reject) => {
     let configPath = path.resolve(process.cwd(), '.uploadrc.js')
-    if (!fs.existsSync(configPath)){
-      reject(new Error('未找到上传配置文件.uploadrc.js'))
-      return
+    let _uploadUrl = ''
+    // 如果有.uploadrc.js 则全部按其配置走，
+    // 如果无.uploadrc.js 则走 全局configStore 的配置
+    if (fs.existsSync(configPath)){
+      let config = require(configPath)
+      if (!config.uploadUrl) {
+        reject('.uploadrc.js 缺少必要字段 uploadUrl')
+        return
+      }else{
+        _uploadUrl = config.uploadUrl
+      }
+    }else{
+      _uploadUrl = store.getUploadUrl()
     }
-    let config = require(configPath)
-    if (!config.uploadUrl) {
-      reject('.uploadrc.js 缺少必要字段 uploadUrl')
+    if (!_uploadUrl) {
+      reject('上传失败 缺少必要的上传路径： uploadUrl')
       return
     }
     let options = {
       method: 'POST',
-      url: config.uploadUrl, //uri url 都支持
+      url: _uploadUrl, //uri url 都支持
       headers: opt,
       formData: {
         file: fs.createReadStream(filePath)
