@@ -24,9 +24,9 @@ Options:
   -h,  --help           output usage information
 
 Commands:
-  [default]             查看nice-upload基础信息
-  url    [uploadUrl]    查看/修改 上传路径
-  push   [file/folder]  上传 单个文件/文件夹
+  [default]             查看nice-upload基础信息与全局配置
+  url    [uploadUrl]    查看[修改]上传路径
+  push   [file/folder]  上传[单个文件/文件夹]
   init                  初始化上传配置文件.uploadrc.js
   conf                  按照配置文件.uploadrc.js规则 进行上传操作
 

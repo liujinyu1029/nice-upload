@@ -12,17 +12,17 @@ program
 
 program
     .command('[default]')
-    .description('查看nice-upload基础信息')
+    .description('查看nice-upload基础信息与全局配置')
     .action(onUrl);
 
 program
     .command('url [uploadUrl]')
-    .description('查看/修改 上传路径')
+    .description('查看[修改]上传路径')
     .action(onUrl);
 
 program
     .command('push [file/folder]')
-    .description('上传 单个文件/文件夹')
+    .description('上传[单个文件/文件夹]')
     .action(onPush);
 
 program
