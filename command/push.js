@@ -9,5 +9,5 @@ module.exports = targPath => {
   if (!storeUploadUrl) {
     return console.log('\x1b[91m%s\x1B[91m', '[error] 尚未配置上传地址，请执行命令 `nice-upload url <uploadUrl>` 添加上传地址')
   }
-  push(targPath)
+  push('push',targPath)
 }

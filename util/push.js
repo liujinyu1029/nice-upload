@@ -5,6 +5,7 @@ const glob = require("glob")
 let pb = {
   targPathOrg: '',// 上传目标源
   prefix: '', // 替换文件夹前缀
+  command:'push',//执行的命令
   // 上传整个文件夹 递归
   handDirecUpload (direcFile) {
     glob.sync(direcFile + '/*').forEach(childFile => {
@@ -38,7 +39,7 @@ let pb = {
     }
     
     // 上传
-    upload(filePath, {
+    upload(command,filePath, {
       'file-path': filePath,
       'file-prefix-path': prefixPath
     }).then(res => {
@@ -53,7 +54,8 @@ let pb = {
   }
 }
 
-function P(targPathOrg, prefix) {
+function P(command, targPathOrg, prefix) {
+  this.command = command
   this.targPathOrg = targPathOrg
   this.prefix = prefix
 }
@@ -62,8 +64,8 @@ P.prototype = pb
  * targPath 必传
  * prefix 非必传 
  */ 
-module.exports = (targPath, prefix='') => {
-  let _p = new P(targPath, prefix)
+module.exports = (command,targPath, prefix = '') => {
+  let _p = new P(command, targPath, prefix)
   // 判断是‘文件夹’还是‘单独文件’
   var stat = fs.lstatSync(targPath)
   if (stat.isDirectory()) {

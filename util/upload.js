@@ -7,28 +7,28 @@ const store = require('../story')
  * let filePath = path.join(__dirname,'../js/a.js') 
  * 
  */
-const upload = (filePath,opt={
+const upload = (command,filePath,opt={
   'file-path-head':undefined,
 }) => {
   return new Promise((resolve, reject) => {
     let configPath = path.resolve(process.cwd(), '.uploadrc.js')
-    let _uploadUrl = store.getUploadUrl()
-    
-    if (fs.existsSync(configPath)){
+    let uploadUrl = store.getUploadUrl()
+    // 当执行conf命令时，会先寻找配置文件内的上传路径
+    if (command=='conf' && fs.existsSync(configPath)) {
       // 【存在】配置文件 .uploadrc.js
       let config = require(configPath)
       if (config.uploadUrl) {
         // 配置文件「有」上传路径，优先使用
-        _uploadUrl = config.uploadUrl
+        uploadUrl = config.uploadUrl
       }
     }
-    if (!_uploadUrl) {
+    if (!uploadUrl) {
       reject('上传失败 缺少必要的上传路径： uploadUrl')
       return
     }
     let options = {
       method: 'POST',
-      url: _uploadUrl, //uri url 都支持
+      url: uploadUrl, //uri url 都支持
       headers: opt,
       formData: {
         file: fs.createReadStream(filePath)
@@ -43,6 +43,7 @@ const upload = (filePath,opt={
           } catch (e) {
             res = {
               ret: 0,
+              uploadUrl,
               error: '服务端响应成功，但是返回值为空'
             }
           }
@@ -50,6 +51,7 @@ const upload = (filePath,opt={
         } else {
           resolve({
             ret:0,
+            uploadUrl,
             statusCode: response.statusCode,
             data,
           })
@@ -57,7 +59,8 @@ const upload = (filePath,opt={
       } else {
         // 失败
         reject({
-          ret: 0, 
+          ret: 0,
+          uploadUrl,
           error :'上传失败,请检查上传路径是否有效'
         })
       }

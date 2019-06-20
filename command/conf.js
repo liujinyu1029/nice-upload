@@ -17,7 +17,7 @@ module.exports = function () {
   }
   conf.uploadList.forEach(item => {
     glob.sync(item.files).forEach(filePath => {
-      push(filePath, item.prefix)
+      push('conf',filePath, item.prefix)
     })
   })
 
