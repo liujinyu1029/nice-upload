@@ -19,7 +19,7 @@ let pb = {
   },
   // 上传单独文件
   uploadFile (filePath) {
-    let { prefix, targPathOrg } = this || {}
+    let { prefix, targPathOrg, command } = this || {}
     let prefixPath
     // 处理传给服务器的实际保存路径
     if (prefix) {
