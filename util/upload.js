@@ -12,19 +12,15 @@ const upload = (filePath,opt={
 }) => {
   return new Promise((resolve, reject) => {
     let configPath = path.resolve(process.cwd(), '.uploadrc.js')
-    let _uploadUrl = ''
-    // 如果有.uploadrc.js 则全部按其配置走，
-    // 如果无.uploadrc.js 则走 全局configStore 的配置
+    let _uploadUrl = store.getUploadUrl()
+    
     if (fs.existsSync(configPath)){
+      // 【存在】配置文件 .uploadrc.js
       let config = require(configPath)
-      if (!config.uploadUrl) {
-        reject('.uploadrc.js 缺少必要字段 uploadUrl')
-        return
-      }else{
+      if (config.uploadUrl) {
+        // 配置文件「有」上传路径，优先使用
         _uploadUrl = config.uploadUrl
       }
-    }else{
-      _uploadUrl = store.getUploadUrl()
     }
     if (!_uploadUrl) {
       reject('上传失败 缺少必要的上传路径： uploadUrl')

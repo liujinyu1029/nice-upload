@@ -5,6 +5,9 @@ nice-upload -- 静态资源上传工具
 
 配套后台服务端程序 [nice-static-server](https://github.com/liujinyu1029/nice-static-server)
 
+> PS:两种上传模式：
+1. 【直接上传】`push`命令 ：直接上传整个文件夹or某个文件，但要先通过`url`命令设置‘全局’上传路径；
+2. 【通过配置文件上传】`conf`命令：依据配置文件".uploadrc.js"，实现更复杂的上传规则，配置文件可以用`init`命令初始化。（注：当`.uploadrc.js`中配置了上传路径属性`uploadUrl`时，会优先使用该路径，如果没有配置，则会用‘全局’上传路径，如果没有‘全局’路径，则要通过`url`配置）
 
 
 ## Install

@@ -1,7 +1,7 @@
 module.exports = {
-  uploadUrl: 'http://118.24.107.17:9001/upload',
+  uploadUrl: '',//上传路径
   uploadList: [{
-    files: 'dist/', // 上传整个文件
+    files: 'dist/', // 上传文件
     prefix: 'mydist/' // 线上替换名
   }]
 }

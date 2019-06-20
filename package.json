@@ -1,6 +1,6 @@
 {
   "name": "nice-upload",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "静态资源上传工具--配套的服务端代码 [nice-static-server](https://github.com/liujinyu1029/nice-static-server.git)",
   "main": "index.js",
   "keywords": [
